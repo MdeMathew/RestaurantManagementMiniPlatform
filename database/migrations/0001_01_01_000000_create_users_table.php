@@ -43,7 +43,6 @@ return new class extends Migration
             $table->decimal('precio', 8, 2);
             $table->string('categoria')->nullable(); // Entrante, Principal, Bebida, Postre
             $table->boolean('disponible')->default(true);
-            $table->timestamps();
         });
         
     }
