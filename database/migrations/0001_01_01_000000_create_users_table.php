@@ -44,6 +44,19 @@ return new class extends Migration
             $table->string('categoria')->nullable(); // Entrante, Principal, Bebida, Postre
             $table->boolean('disponible')->default(true);
         });
+
+        Schema::create('reservas', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre');
+            $table->date('fecha');
+            $table->time('hora');
+            $table->unsignedSmallInteger('personas');
+            $table->string('telefono', 30)->nullable();
+            $table->string('email')->nullable();
+            $table->string('estado')->default('pendiente'); // pendiente|confirmada|cancelada
+            $table->index(['fecha', 'hora']);
+            // sin timestamps
+        });
         
     }
 
@@ -55,5 +68,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('reservas');
     }
 };
